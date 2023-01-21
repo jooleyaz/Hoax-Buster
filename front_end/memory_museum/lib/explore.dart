@@ -11,7 +11,11 @@ class ExplorePageState extends State<ExplorePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("ur mom"),
+        backgroundColor: Colors.green,
+      ),
       body: Text("Explore Page uwu"),
     );
   }
