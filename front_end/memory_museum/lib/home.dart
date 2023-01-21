@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memory_museum/explore.dart';
+import 'package:memory_museum/mygallery.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
