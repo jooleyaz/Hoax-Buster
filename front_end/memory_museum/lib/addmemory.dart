@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import 'home.dart';
+import 'memory.dart';
 
 class AddMemoryPage extends StatefulWidget {
   const AddMemoryPage({super.key});
@@ -17,15 +17,15 @@ class AddMemoryPage extends StatefulWidget {
 
 class AddMemoryPageState extends State<AddMemoryPage> {
   String? _imagePath;
-  List<String> imageList = [
-    "assets/images/memories/0.png",
-    "assets/images/memories/1.png",
-    "assets/images/memories/3.png",
-    "assets/images/memories/4.png",
-    "assets/images/memories/5.png",
-    "assets/images/memories/6.png",
-    "assets/images/memories/dfghj.png",
-    "assets/images/memories/fuck_fuck_me_cn_tower_dicks.png"
+  List<Memory> imageList = [
+    Memory("assets/images/memories/0.png", "ur mom", ""),
+    Memory("assets/images/memories/1.png", "ur dad", ""),
+    Memory("assets/images/memories/3.png", "ur julia", ""),
+    Memory("assets/images/memories/4.png", "ur jen", ""),
+    Memory("assets/images/memories/5.png", "ur jacob", ""),
+    Memory("assets/images/memories/6.png", "ur garreth", ""),
+    Memory("assets/images/memories/dfghj.png", "ur bonk", ""),
+    Memory("assets/images/memories/fuck_fuck_me_cn_tower_dicks.png", "ur poggo", "")
   ];
 
   @override
@@ -49,7 +49,7 @@ class AddMemoryPageState extends State<AddMemoryPage> {
     String imagePath = join((await getApplicationSupportDirectory()).path,
         "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
-    imageList.add(imagePath);
+    imageList.add(new Memory(imagePath, "", ""));
 
     try {
       //Make sure to await the call to detectEdge.
@@ -128,7 +128,7 @@ class AddMemoryPageState extends State<AddMemoryPage> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(imageList[index]),
+                          image: AssetImage(imageList[index].imagep),
                         ),
                       ),
                     ),
