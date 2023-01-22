@@ -18,6 +18,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(children: [
             Padding(
               padding: const EdgeInsets.only(top: 60),
+              child: Image.asset("assets/AR(9).png"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 60),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
