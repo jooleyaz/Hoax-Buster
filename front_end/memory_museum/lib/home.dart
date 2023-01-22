@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:memory_museum/add_new.dart';
-import 'package:memory_museum/addmemory.dart';
 import 'package:memory_museum/explore.dart';
 
 class MyHomePage extends StatefulWidget {
