@@ -39,6 +39,10 @@ dependencies:
   edge_detection: ^1.1.1
   permission_handler: ^10.2.0
   path_provider: ^2.0.11
+<<<<<<< HEAD
+=======
+  gallery_saver: ^2.3.2
+>>>>>>> 7aa2e7485a4db29cdd2fcbfb316fbfaabd67b1d5
   image_picker: ^0.8.6+1
 
 dev_dependencies:
