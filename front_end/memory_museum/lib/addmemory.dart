@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_file_manager/flutter_file_manager.dart';
-import 'package:path_provider_ex/path_provider_ex.dart';
 
 import 'home.dart';
 
@@ -19,23 +17,19 @@ class AddMemoryPage extends StatefulWidget {
 
 class AddMemoryPageState extends State<AddMemoryPage> {
   String? _imagePath;
-  var files;
- 
-  void getFiles() async { //asyn function to get list of files
-      List<StorageInfo> storageInfo = await PathProviderEx.getStorageInfo();
-      var root = storageInfo[0].rootDir; //storageInfo[1] for SD card, geting the root directory
-      var fm = FileManager(root: Directory(root)); //
-      files = await fm.filesTree( 
-      //set fm.dirsTree() for directory/folder tree list
-        excludedPaths: ["/storage/emulated/0/Android"],
-        extensions: ["png"] //optional, to filter files, remove to list all,
-        //remove this if your are grabbing folder list
-      );
-      setState(() {}); //update the UI
+  List<String> imageList = [
+    "assets/images/memories/0.png",
+    "assets/images/memories/1.png",
+    "assets/images/memories/3.png",
+    "assets/images/memories/4.png",
+    "assets/images/memories/5.png",
+    "assets/images/memories/6.png",
+    "assets/images/memories/dfghj.png",
+    "assets/images/memories/fuck_fuck_me_cn_tower_dicks.png"
+  ];
 
   @override
   void initState() {
-    getFiles();
     super.initState();
   }
 
@@ -52,8 +46,10 @@ class AddMemoryPageState extends State<AddMemoryPage> {
     }
 
 // Generate filepath for saving
-    String imagePath = join("assets/images/memories",
-        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.png");
+    String imagePath = join((await getApplicationSupportDirectory()).path,
+        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
+
+    imageList.add(imagePath);
 
     try {
       //Make sure to await the call to detectEdge.
@@ -118,7 +114,7 @@ class AddMemoryPageState extends State<AddMemoryPage> {
                   mainAxisSpacing: 0,
                   crossAxisCount: 3,
                 ),
-                itemCount: 6,
+                itemCount: imageList.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
@@ -132,7 +128,7 @@ class AddMemoryPageState extends State<AddMemoryPage> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(files[index].path.split('/').last),
+                          image: AssetImage(imageList[index]),
                         ),
                       ),
                     ),
@@ -142,12 +138,5 @@ class AddMemoryPageState extends State<AddMemoryPage> {
             )
           ]),
     );
-  }
-}
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
