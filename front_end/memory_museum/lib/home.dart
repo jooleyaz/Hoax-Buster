@@ -18,28 +18,30 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.blue,
         title: const Text("Homepage"),
       ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ExplorePage()),
-              );
-            },
-            child: const Text("Explore"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyGalleryPage()),
-              );
-            },
-            child: const Text("My Gallery"),
-          )
-        ]
-      ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ExplorePage()),
+                );
+              },
+              child: const Text("Explore"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyGalleryPage()),
+                );
+              },
+              child: const Text("My Gallery"),
+            )
+          ]
+        ),
+      )
     );
   }
 }
