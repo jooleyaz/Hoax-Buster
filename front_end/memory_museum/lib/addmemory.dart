@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'home.dart';
+import 'memory.dart';
 
 class AddMemoryPage extends StatefulWidget {
   const AddMemoryPage({super.key});
@@ -15,6 +17,16 @@ class AddMemoryPage extends StatefulWidget {
 
 class AddMemoryPageState extends State<AddMemoryPage> {
   String? _imagePath;
+  List<Memory> imageList = [
+    Memory("assets/images/memories/0.png", "ur mom", ""),
+    Memory("assets/images/memories/1.png", "ur dad", ""),
+    Memory("assets/images/memories/3.png", "ur julia", ""),
+    Memory("assets/images/memories/4.png", "ur jen", ""),
+    Memory("assets/images/memories/5.png", "ur jacob", ""),
+    Memory("assets/images/memories/6.png", "ur garreth", ""),
+    Memory("assets/images/memories/dfghj.png", "ur bonk", ""),
+    Memory("assets/images/memories/fuck_fuck_me_cn_tower_dicks.png", "ur poggo", "")
+  ];
 
   @override
   void initState() {
@@ -37,6 +49,8 @@ class AddMemoryPageState extends State<AddMemoryPage> {
     String imagePath = join((await getApplicationSupportDirectory()).path,
         "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
+    imageList.add(new Memory(imagePath, "", ""));
+
     try {
       //Make sure to await the call to detectEdge.
       bool success = await EdgeDetection.detectEdge(
@@ -47,13 +61,10 @@ class AddMemoryPageState extends State<AddMemoryPage> {
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
       );
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      print(error);
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -67,25 +78,24 @@ class AddMemoryPageState extends State<AddMemoryPage> {
       appBar: AppBar(
         title: const Text('Plugin example app'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: ElevatedButton(
                 onPressed: getImage,
-                child: Text('Scan'),
+                child: const Text('Scan'),
               ),
             ),
-            SizedBox(height: 20),
-            Text('Cropped image path:'),
+            const SizedBox(height: 20),
+            const Text('Cropped image path:'),
             Padding(
               padding: const EdgeInsets.only(top: 0, left: 0, right: 0),
               child: Text(
                 _imagePath.toString(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             ),
             Visibility(
@@ -97,9 +107,36 @@ class AddMemoryPageState extends State<AddMemoryPage> {
                 ),
               ),
             ),
-          ],
-        ),
-      ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
+                  crossAxisCount: 3,
+                ),
+                itemCount: imageList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyHomePage()),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(imageList[index].imagep),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            )
+          ]),
     );
   }
 }
