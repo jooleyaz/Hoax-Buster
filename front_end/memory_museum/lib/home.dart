@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memory_museum/add_new.dart';
+import 'package:memory_museum/addmemory.dart';
 import 'package:memory_museum/explore.dart';
 import 'package:memory_museum/mygallery.dart';
 
@@ -28,31 +30,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => const ExplorePage()),
                 );
               },
-              child: const Text(
-                "Explore",
-                style: TextStyle(fontsize: 40, fontFamily: "Passion One",),),
-              //DESIGN ELEMENTS
-              style: ElevatedButton.stylefrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                elevation: 20,
-                shadowColor: Colors.black,
-              )
+              child: const Text("Go to explore page"),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const MyGalleryPage()),
+                  MaterialPageRoute(builder: (context) => const AddNewPage()),
                 );
               },
               child: const Text("My Gallery"),
-              //DESIGN ELEMENTS
-              backgroundColor: Colors.white,
             )
           ]
         ),
-        backgroundColor: Color(0xffBF8D8D),
       )
     );
   }
