@@ -14,42 +14,76 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xff360000),
         appBar: AppBar(
           backgroundColor: const Color(0xff360000),
           title: const Text("Homepage"),
         ),
         body: Center(
           child: Column(children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ExplorePage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(20.0),
-                fixedSize: const Size(300, 80),
-                textStyle: const TextStyle(
-                  fontSize: 40,
-                  fontFamily: "Lexend-Regular",
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ExplorePage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20.0),
+                  fixedSize: const Size(300, 80),
+                  backgroundColor: Color.fromARGB(255, 239, 223, 223),
+                  elevation: 20,
+                  shadowColor: Colors.black,
+                  alignment: Alignment.center,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  foregroundColor: Colors.black,
                 ),
-                backgroundColor: Colors.white,
-                elevation: 20,
-                shadowColor: Colors.black,
-                alignment: Alignment.center,
+                child: const Text(
+                  "EXPLORE MODE",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: "Lexend-Regular",
+                    color: Colors.black,
+                  ),
+                ),
               ),
-              child: const Text("Go to explore page"),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddNewPage()),
-                );
-              },
-              child: const Text("My Gallery"),
-            )
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AddNewPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20.0),
+                  fixedSize: const Size(300, 80),
+                  backgroundColor: Color.fromARGB(255, 239, 223, 223),
+                  elevation: 20,
+                  shadowColor: Colors.black,
+                  alignment: Alignment.center,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  foregroundColor: Colors.black,
+                ),
+                child: const Text(
+                  "ADD ARTIFACT",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: "Lexend-Regular",
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
           ]),
         ));
   }
