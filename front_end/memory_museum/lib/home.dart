@@ -21,25 +21,27 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ExplorePage()),
+            Center(
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ExplorePage()),
+                  );
+                },
+                child: const Text(
+                  "Explore",
+                  style: TextStyle(fontsize: 40, fontFamily: "Passion One",),),
+                //DESIGN ELEMENTS
+                style: ElevatedButton.stylefrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
+                  elevation: 20,
+                  shadowColor: Colors.black,
+                )),
                 );
-              },
-              child: const Text(
-                "Explore",
-                style: TextStyle(fontsize: 40, fontFamily: "Passion One",),),
-              //DESIGN ELEMENTS
-              style: ElevatedButton.stylefrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                elevation: 20,
-                shadowColor: Colors.black,
-              )
-            ),
-            ElevatedButton(
+            Center(
+              ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -50,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               //DESIGN ELEMENTS
               backgroundColor: Colors.white,
             )
+            );
           ]
         ),
         backgroundColor: Color(0xffBF8D8D),
