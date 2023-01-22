@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ]
         ),
+        backgroundColor: Color(0xffBF8D8D),
       )
     );
   }
