@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_file_manager/flutter_file_manager.dart';
+import 'package:path_provider_ex/path_provider_ex.dart';
+
+import 'home.dart';
 
 class AddMemoryPage extends StatefulWidget {
   const AddMemoryPage({super.key});
@@ -15,9 +19,23 @@ class AddMemoryPage extends StatefulWidget {
 
 class AddMemoryPageState extends State<AddMemoryPage> {
   String? _imagePath;
+  var files;
+ 
+  void getFiles() async { //asyn function to get list of files
+      List<StorageInfo> storageInfo = await PathProviderEx.getStorageInfo();
+      var root = storageInfo[0].rootDir; //storageInfo[1] for SD card, geting the root directory
+      var fm = FileManager(root: Directory(root)); //
+      files = await fm.filesTree( 
+      //set fm.dirsTree() for directory/folder tree list
+        excludedPaths: ["/storage/emulated/0/Android"],
+        extensions: ["png"] //optional, to filter files, remove to list all,
+        //remove this if your are grabbing folder list
+      );
+      setState(() {}); //update the UI
 
   @override
   void initState() {
+    getFiles();
     super.initState();
   }
 
@@ -34,8 +52,8 @@ class AddMemoryPageState extends State<AddMemoryPage> {
     }
 
 // Generate filepath for saving
-    String imagePath = join((await getApplicationSupportDirectory()).path,
-        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
+    String imagePath = join("assets/images/memories",
+        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.png");
 
     try {
       //Make sure to await the call to detectEdge.
@@ -47,13 +65,10 @@ class AddMemoryPageState extends State<AddMemoryPage> {
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
       );
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      print(error);
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -67,25 +82,24 @@ class AddMemoryPageState extends State<AddMemoryPage> {
       appBar: AppBar(
         title: const Text('Plugin example app'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: ElevatedButton(
                 onPressed: getImage,
-                child: Text('Scan'),
+                child: const Text('Scan'),
               ),
             ),
-            SizedBox(height: 20),
-            Text('Cropped image path:'),
+            const SizedBox(height: 20),
+            const Text('Cropped image path:'),
             Padding(
               padding: const EdgeInsets.only(top: 0, left: 0, right: 0),
               child: Text(
                 _imagePath.toString(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             ),
             Visibility(
@@ -97,9 +111,43 @@ class AddMemoryPageState extends State<AddMemoryPage> {
                 ),
               ),
             ),
-          ],
-        ),
-      ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
+                  crossAxisCount: 3,
+                ),
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyHomePage()),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(files[index].path.split('/').last),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            )
+          ]),
     );
+  }
+}
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
