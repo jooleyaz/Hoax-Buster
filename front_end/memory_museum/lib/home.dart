@@ -15,14 +15,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xff360000),
-        appBar: AppBar(
-          backgroundColor: const Color(0xff360000),
-          title: const Text("Homepage"),
-        ),
         body: Center(
           child: Column(children: [
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(top: 60),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -34,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
                   fixedSize: const Size(300, 80),
-                  backgroundColor: Color.fromARGB(255, 239, 223, 223),
+                  backgroundColor: const Color.fromARGB(255, 239, 223, 223),
                   elevation: 20,
                   shadowColor: Colors.black,
                   alignment: Alignment.center,
@@ -54,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(30.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -65,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
                   fixedSize: const Size(300, 80),
-                  backgroundColor: Color.fromARGB(255, 239, 223, 223),
+                  backgroundColor: const Color.fromARGB(255, 239, 223, 223),
                   elevation: 20,
                   shadowColor: Colors.black,
                   alignment: Alignment.center,
