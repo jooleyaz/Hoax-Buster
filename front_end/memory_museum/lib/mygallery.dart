@@ -8,15 +8,33 @@ class MyGalleryPage extends StatefulWidget {
 }
 
 class MyGalleryPageState extends State<MyGalleryPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("ur mom"),
-        backgroundColor: Colors.green,
-      ),
-      body: Text("My Gallery"),
+        return GridView.count(
+      primary: false,
+      padding: const EdgeInsets.all(20),
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      crossAxisCount: 2,
+      children: <Widget>[
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png")),
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png")),
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png")),
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png")),
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png")),
+        ElevatedButton(onPressed: () {},
+        child: Image.asset("assets/images/memories/uwu.png"))
+      ],
     );
   }
 }

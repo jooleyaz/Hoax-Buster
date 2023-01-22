@@ -16,7 +16,7 @@ class ExplorePageState extends State<ExplorePage> {
         title: const Text("ur mom"),
         backgroundColor: Colors.green,
       ),
-      body: Text("Explore Page uwu"),
+      body: const Text("Explore Page uwu"),
     );
   }
 }
