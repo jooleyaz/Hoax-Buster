@@ -28,7 +28,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => const ExplorePage()),
                 );
               },
-              child: const Text("Explore"),
+              child: const Text(
+                "Explore",
+                style: TextStyle(fontsize: 40, fontFamily: "Passion One",),),
+              //DESIGN ELEMENTS
+              style: ElevatedButton.stylefrom(
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                elevation: 20,
+                shadowColor: Colors.black,
+              )
             ),
             ElevatedButton(
               onPressed: () {
@@ -38,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               child: const Text("My Gallery"),
+              //DESIGN ELEMENTS
+              backgroundColor: Colors.white,
             )
           ]
         ),
