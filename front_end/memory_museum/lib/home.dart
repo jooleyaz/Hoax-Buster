@@ -11,17 +11,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text("Homepage"),
-      ),
-      body: Center(
-        child: Column(
-          children: [
+        appBar: AppBar(
+          backgroundColor: const Color(0xff360000),
+          title: const Text("Homepage"),
+        ),
+        body: Center(
+          child: Column(children: [
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -29,6 +27,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => const ExplorePage()),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(20.0),
+                fixedSize: const Size(300, 80),
+                textStyle: const TextStyle(
+                  fontSize: 40,
+                  fontFamily: "Lexend-Regular",
+                ),
+                backgroundColor: Colors.white,
+                elevation: 20,
+                shadowColor: Colors.black,
+                alignment: Alignment.center,
+              ),
               child: const Text("Go to explore page"),
             ),
             ElevatedButton(
@@ -40,9 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text("My Gallery"),
             )
-          ]
-        ),
-      )
-    );
+          ]),
+        ));
   }
 }
