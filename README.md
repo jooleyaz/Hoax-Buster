@@ -1,5 +1,5 @@
 # Memory Museum
- NWHacks 2023 WINNERRRRRRR
+ NWHacks 2023
 
 # Team members:
 - Jen Taruno
